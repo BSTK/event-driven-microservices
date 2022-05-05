@@ -1,7 +1,7 @@
 package dev.bstk.msproduto.cqrscommand.rest;
 
 import dev.bstk.msproduto.cqrscommand.command.CadastrarNovoProdutoCommand;
-import dev.bstk.msproduto.cqrscommand.model.Produto;
+import dev.bstk.msproduto.cqrscommand.data.Produto;
 import dev.bstk.msproduto.cqrscommand.rest.request.CadastrarNovoProdutoRequest;
 import dev.bstk.msproduto.cqrscommand.rest.response.CadastrarNovoProdutoResponse;
 import dev.bstk.msproduto.util.Mapper;

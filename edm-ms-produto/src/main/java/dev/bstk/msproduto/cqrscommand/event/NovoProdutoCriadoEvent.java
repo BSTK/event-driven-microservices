@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -31,10 +30,4 @@ public class NovoProdutoCriadoEvent implements Serializable {
 
     @NotNull
     private Integer quantidade;
-
-    @NotNull
-    private LocalDateTime dataInclusao;
-
-    @NotNull
-    private LocalDateTime dataAtulizacao;
 }
