@@ -22,7 +22,9 @@
 
 		<!-- Versões Dependências -->
 		<assertj.version>3.22.0</assertj.version>
-		<modelmapper.version>2.3.0</modelmapper.version>
+		<modelmapper.version>3.1.0</modelmapper.version>
+		<axon-spring-boot-starter.version>4.5.9</axon-spring-boot-starter.version>
+		<guava.version>31.1-jre</guava.version>
 	</properties>
 
 	<dependencies>
@@ -73,6 +75,20 @@
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>${modelmapper.version}</version>
+		</dependency>
+
+		<!-- Axon Spring Boot -->
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-spring-boot-starter</artifactId>
+			<version>${axon-spring-boot-starter.version}</version>
+		</dependency>
+
+		<!-- Guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 	</dependencies>
 
