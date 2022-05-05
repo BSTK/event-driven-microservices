@@ -10,9 +10,6 @@ import java.math.BigDecimal;
 public class CadastrarNovoProdutoRequest implements Serializable {
 
     @NotNull
-    private String sku;
-
-    @NotNull
     private String nome;
 
     @NotNull

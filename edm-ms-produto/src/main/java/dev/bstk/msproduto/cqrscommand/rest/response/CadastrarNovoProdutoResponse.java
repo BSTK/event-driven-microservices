@@ -1,22 +1,17 @@
-package dev.bstk.msproduto.cqrscommand.command;
+package dev.bstk.msproduto.cqrscommand.rest.response;
 
-import lombok.Builder;
 import lombok.Data;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
-import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@Builder
-@Component
-public class CadastrarNovoProdutoCommand implements Serializable {
+public class CadastrarNovoProdutoResponse implements Serializable {
 
     @NotNull
-    @TargetAggregateIdentifier
     private UUID uuid;
 
     @NotNull
@@ -30,4 +25,10 @@ public class CadastrarNovoProdutoCommand implements Serializable {
 
     @NotNull
     private Integer quantidade;
+
+    @NotNull
+    private LocalDateTime dataInclusao;
+
+    @NotNull
+    private LocalDateTime dataAtulizacao;
 }
