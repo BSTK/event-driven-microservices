@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.helper;
+package dev.bstk.msproduto.util;
 
 import org.modelmapper.ModelMapper;
 
