@@ -1,6 +1,5 @@
 package dev.bstk.msproduto.cqrscommand.data;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,25 +7,19 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.UUID;
+import java.time.Instant;
+import java.util.Date;
 
 @Data
 @Entity
-@Builder
 @Table(name = "PRODUTO")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Produto implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Long id;
-
-    @NotNull
-    @Column(name = "UUID")
-    private UUID uuid;
+    private String produtoId;
 
     @NotNull
     @Column(name = "NOME")
@@ -47,23 +40,23 @@ public class Produto implements Serializable {
     @NotNull
     @Column(name = "DATA_INCLUSAO")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime dataInclusao;
+    private Date dataInclusao;
 
     @NotNull
     @Column(name = "DATA_ATULIZACAO")
     @Temporal(TemporalType.TIMESTAMP)
-    private LocalDateTime dataAtulizacao;
+    private Date dataAtulizacao;
 
     public Produto() { }
 
     @PrePersist
     private void prePersist() {
-        setDataInclusao(LocalDateTime.now());
-        setDataAtulizacao(LocalDateTime.now());
+        setDataInclusao(Date.from(Instant.now()));
+        setDataAtulizacao(Date.from(Instant.now()));
     }
 
     @PreUpdate
     private void preUpdate() {
-        setDataAtulizacao(LocalDateTime.now());
+        setDataAtulizacao(Date.from(Instant.now()));
     }
 }

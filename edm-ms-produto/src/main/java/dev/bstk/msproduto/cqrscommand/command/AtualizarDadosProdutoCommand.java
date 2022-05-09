@@ -1,23 +1,20 @@
-package dev.bstk.msproduto.cqrscommand.event;
+package dev.bstk.msproduto.cqrscommand.command;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.UUID;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class NovoProdutoCriadoEvent implements Serializable {
+public class AtualizarDadosProdutoCommand implements Serializable {
 
     @NotNull
-    private UUID uuid;
+    @TargetAggregateIdentifier
+    private String produtoId;
 
     @NotNull
     private String nome;

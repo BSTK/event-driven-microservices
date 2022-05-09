@@ -1,18 +1,16 @@
-package dev.bstk.msproduto.cqrscommand.rest.response;
+package dev.bstk.msproduto.cqrscommand.rest.request;
 
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
-public class CadastrarNovoProdutoResponse implements Serializable {
+public class AtualizarDadosProdutoRequest implements Serializable {
 
     @NotNull
-    private UUID uuid;
+    private String produtoId;
 
     @NotNull
     private String nome;
@@ -25,10 +23,4 @@ public class CadastrarNovoProdutoResponse implements Serializable {
 
     @NotNull
     private Integer quantidade;
-
-    @NotNull
-    private LocalDateTime dataInclusao;
-
-    @NotNull
-    private LocalDateTime dataAtulizacao;
 }

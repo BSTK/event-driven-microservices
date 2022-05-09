@@ -6,25 +6,12 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 @Data
 @Builder
-public class CadastrarNovoProdutoCommand implements Serializable {
+public class ExcluirProdutoCadastradoCommand implements Serializable {
 
     @NotNull
     @TargetAggregateIdentifier
     private String produtoId;
-
-    @NotNull
-    private String nome;
-
-    @NotNull
-    private String descricao;
-
-    @NotNull
-    private BigDecimal valor;
-
-    @NotNull
-    private Integer quantidade;
 }
