@@ -4,6 +4,7 @@ import dev.bstk.msproduto.cqrsquery.api.response.ProdutoResponse;
 import dev.bstk.msproduto.cqrsquery.queries.ProdutosPorQuantidadeQuery;
 import dev.bstk.msproduto.cqrsquery.queries.ProdutosPorValorQuery;
 import dev.bstk.msproduto.cqrsquery.queries.ProdutosQuery;
+import dev.bstk.msproduto.util.CollectionHelper;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -32,38 +33,44 @@ public class ProdutoQueryResource {
                 ResponseTypes.multipleInstancesOf(ProdutoResponse.class))
             .join();
 
-        return ResponseEntity.ok().body(produtosResponse);
+        return response(produtosResponse);
     }
 
-    @GetMapping
+    @GetMapping("/valor")
     public ResponseEntity<List<ProdutoResponse>> produtosPorValor(@RequestParam("de") final BigDecimal valorDe,
                                                                   @RequestParam("ate") final BigDecimal valorAte) {
         final List<ProdutoResponse> produtosResponse = queryGateway
             .query(
                 ProdutosPorValorQuery
                     .builder()
-                    .valorDe(valorDe)
-                    .valorAte(valorAte)
+                    .de(valorDe)
+                    .ate(valorAte)
                     .build(),
                 ResponseTypes.multipleInstancesOf(ProdutoResponse.class))
             .join();
 
-        return ResponseEntity.ok().body(produtosResponse);
+        return response(produtosResponse);
     }
 
-    @GetMapping
+    @GetMapping("/quantidade")
     public ResponseEntity<List<ProdutoResponse>> produtosPorQuantidade(@RequestParam("de") final Integer quantidadeDe,
                                                                        @RequestParam("ate") final Integer quantidadeAte) {
         final List<ProdutoResponse> produtosResponse = queryGateway
             .query(
                 ProdutosPorQuantidadeQuery
                     .builder()
-                    .quantidadeDe(quantidadeDe)
-                    .quantidadeAte(quantidadeAte)
+                    .de(quantidadeDe)
+                    .ate(quantidadeAte)
                     .build(),
                 ResponseTypes.multipleInstancesOf(ProdutoResponse.class))
             .join();
 
-        return ResponseEntity.ok().body(produtosResponse);
+        return response(produtosResponse);
+    }
+
+    private ResponseEntity<List<ProdutoResponse>> response(final List<ProdutoResponse> response) {
+        return CollectionHelper.isEmpty(response)
+            ? ResponseEntity.noContent().build()
+            : ResponseEntity.ok().body(response);
     }
 }

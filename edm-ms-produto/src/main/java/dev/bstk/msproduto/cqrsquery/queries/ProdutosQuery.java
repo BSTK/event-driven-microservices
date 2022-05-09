@@ -7,5 +7,4 @@ import java.io.Serializable;
 
 @Data
 @Builder
-public class ProdutosQuery implements Serializable {
-}
+public class ProdutosQuery implements Serializable { }

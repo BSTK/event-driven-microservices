@@ -10,6 +10,6 @@ import java.math.BigDecimal;
 @Builder
 public class ProdutosPorValorQuery implements Serializable {
 
-    private BigDecimal valorDe;
-    private BigDecimal valorAte;
+    private BigDecimal de;
+    private BigDecimal ate;
 }

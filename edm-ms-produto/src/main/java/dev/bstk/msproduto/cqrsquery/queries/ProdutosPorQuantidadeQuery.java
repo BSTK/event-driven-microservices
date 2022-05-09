@@ -9,6 +9,6 @@ import java.io.Serializable;
 @Builder
 public class ProdutosPorQuantidadeQuery implements Serializable {
 
-    private Integer quantidadeDe;
-    private Integer quantidadeAte;
+    private Integer de;
+    private Integer ate;
 }
