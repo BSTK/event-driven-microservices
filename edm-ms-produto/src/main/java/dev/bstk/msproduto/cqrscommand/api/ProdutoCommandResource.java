@@ -1,10 +1,10 @@
-package dev.bstk.msproduto.cqrscommand.rest;
+package dev.bstk.msproduto.cqrscommand.api;
 
 import dev.bstk.msproduto.cqrscommand.command.AtualizarDadosProdutoCommand;
 import dev.bstk.msproduto.cqrscommand.command.CadastrarNovoProdutoCommand;
 import dev.bstk.msproduto.cqrscommand.command.ExcluirProdutoCadastradoCommand;
-import dev.bstk.msproduto.cqrscommand.rest.request.AtualizarDadosProdutoRequest;
-import dev.bstk.msproduto.cqrscommand.rest.request.CadastrarNovoProdutoRequest;
+import dev.bstk.msproduto.cqrscommand.api.request.AtualizarDadosProdutoRequest;
+import dev.bstk.msproduto.cqrscommand.api.request.CadastrarNovoProdutoRequest;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/v1/produtos")
-public class ProdutoResource {
+public class ProdutoCommandResource {
 
     private final CommandGateway commandGateway;
 

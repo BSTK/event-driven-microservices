@@ -1,8 +1,5 @@
 package dev.bstk.msproduto.cqrscommand.aggregate;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.bstk.msproduto.cqrscommand.command.AtualizarDadosProdutoCommand;
 import dev.bstk.msproduto.cqrscommand.command.CadastrarNovoProdutoCommand;
 import dev.bstk.msproduto.cqrscommand.command.ExcluirProdutoCadastradoCommand;
@@ -10,7 +7,6 @@ import dev.bstk.msproduto.cqrscommand.event.AtualizarProdutoEvent;
 import dev.bstk.msproduto.cqrscommand.event.ExcluirProdutoCadastradoEvent;
 import dev.bstk.msproduto.cqrscommand.event.NovoProdutoCadastradoEvent;
 import dev.bstk.msproduto.util.Mapper;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -21,25 +17,17 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
-@Data
 @Slf4j
 @Validated
 @Aggregate
 public class ProdutoAggregate {
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
-
     @NotNull
     @AggregateIdentifier
     private String produtoId;
-    private String nome;
-    private String descricao;
-    private BigDecimal valor;
-    private Integer quantidade;
 
-    private ProdutoAggregate() { }
+    public ProdutoAggregate() { }
 
     @CommandHandler
     public ProdutoAggregate(@Valid final CadastrarNovoProdutoCommand command) {
@@ -50,6 +38,7 @@ public class ProdutoAggregate {
     }
 
     @CommandHandler
+    /// TODO: VERIFICAR QUAL MOTIVO (BUG) NÃO ESTÁ ATUALIZANDO
     public ProdutoAggregate(@Valid final AtualizarDadosProdutoCommand command) {
         log.info(">>> ProdutoAggregate -> AtualizarDadosProdutoCommand");
         AggregateLifecycle.apply(
@@ -58,6 +47,7 @@ public class ProdutoAggregate {
     }
 
     @CommandHandler
+    /// TODO: VERIFICAR QUAL MOTIVO (BUG) NÃO ESTÁ EXCLUINDO
     public ProdutoAggregate(@Valid final ExcluirProdutoCadastradoCommand command) {
         log.info(">>> ProdutoAggregate -> ExcluirProdutoCadastradoCommand");
         AggregateLifecycle.apply(
@@ -67,27 +57,18 @@ public class ProdutoAggregate {
 
     @EventSourcingHandler
     public void on(final NovoProdutoCadastradoEvent evento) {
-        eventHandler(evento);
+        this.produtoId = evento.getProdutoId();
     }
 
     @EventSourcingHandler
+    /// TODO: VERIFICAR QUAL MOTIVO (BUG) ATUALIANDO
     public void on(final AtualizarDadosProdutoCommand evento) {
-        eventHandler(evento);
+        this.produtoId = evento.getProdutoId();
     }
 
-    private void eventHandler(Object evento) {
-        try {
-            final String json = MAPPER.writeValueAsString(evento);
-            final JsonNode jsonNode = MAPPER.readTree(json);
-
-            setProdutoId(jsonNode.get("produtoId").asText());
-            setNome(jsonNode.get("nome").asText());
-            setValor(jsonNode.get("valor").decimalValue());
-            setDescricao(jsonNode.get("descricao").asText());
-            setQuantidade(jsonNode.get("quantidade").asInt());
-
-        } catch (JsonProcessingException ex) {
-            log.error("JsonProcessingException ex", ex);
-        }
+    @EventSourcingHandler
+    /// TODO: VERIFICAR QUAL MOTIVO (BUG) NÃO ESTÁ EXCLUINDO
+    public void on(final ExcluirProdutoCadastradoEvent evento) {
+        this.produtoId = evento.getProdutoId();
     }
 }

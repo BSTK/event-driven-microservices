@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.cqrscommand.rest.request;
+package dev.bstk.msproduto.cqrsquery.api.response;
 
 import lombok.Data;
 
@@ -7,10 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
-public class AtualizarDadosProdutoRequest implements Serializable {
-
-    @NotNull
-    private String produtoId;
+public class ProdutoResponse implements Serializable {
 
     @NotNull
     private String nome;
