@@ -1,9 +1,9 @@
 package dev.bstk.msproduto.cqrsquery.api;
 
 import dev.bstk.msproduto.cqrsquery.api.response.ProdutoResponse;
-import dev.bstk.msproduto.cqrsquery.queries.ProdutosPorQuantidadeQuery;
-import dev.bstk.msproduto.cqrsquery.queries.ProdutosPorValorQuery;
-import dev.bstk.msproduto.cqrsquery.queries.ProdutosQuery;
+import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorQuantidadeQuery;
+import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorValorQuery;
+import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosQuery;
 import dev.bstk.msproduto.util.CollectionHelper;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.messaging.responsetypes.ResponseTypes;

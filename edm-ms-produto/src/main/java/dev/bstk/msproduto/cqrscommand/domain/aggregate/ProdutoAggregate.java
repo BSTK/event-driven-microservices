@@ -1,11 +1,11 @@
-package dev.bstk.msproduto.cqrscommand.aggregate;
+package dev.bstk.msproduto.cqrscommand.domain.aggregate;
 
-import dev.bstk.msproduto.cqrscommand.command.AtualizarDadosProdutoCommand;
-import dev.bstk.msproduto.cqrscommand.command.CadastrarNovoProdutoCommand;
-import dev.bstk.msproduto.cqrscommand.command.ExcluirProdutoCadastradoCommand;
-import dev.bstk.msproduto.cqrscommand.event.AtualizarProdutoEvent;
-import dev.bstk.msproduto.cqrscommand.event.ExcluirProdutoCadastradoEvent;
-import dev.bstk.msproduto.cqrscommand.event.NovoProdutoCadastradoEvent;
+import dev.bstk.msproduto.cqrscommand.domain.command.AtualizarDadosProdutoCommand;
+import dev.bstk.msproduto.cqrscommand.domain.command.CadastrarNovoProdutoCommand;
+import dev.bstk.msproduto.cqrscommand.domain.command.ExcluirProdutoCadastradoCommand;
+import dev.bstk.msproduto.cqrscommand.domain.event.AtualizarProdutoEvent;
+import dev.bstk.msproduto.cqrscommand.domain.event.ExcluirProdutoCadastradoEvent;
+import dev.bstk.msproduto.cqrscommand.domain.event.NovoProdutoCadastradoEvent;
 import dev.bstk.msproduto.util.Mapper;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;

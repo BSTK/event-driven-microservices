@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.cqrscommand.data;
+package dev.bstk.msproduto.data;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

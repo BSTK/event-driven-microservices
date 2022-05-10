@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.cqrscommand.data;
+package dev.bstk.msproduto.data;
 
 import java.math.BigDecimal;
 import java.util.List;

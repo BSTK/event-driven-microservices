@@ -1,8 +1,9 @@
-package dev.bstk.msproduto.cqrscommand.command;
+package dev.bstk.msproduto.cqrscommand.domain.event;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -10,10 +11,11 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class CadastrarNovoProdutoCommand implements Serializable {
+@AllArgsConstructor
+@NoArgsConstructor
+public class NovoProdutoCadastradoEvent implements Serializable {
 
     @NotNull
-    @TargetAggregateIdentifier
     private String produtoId;
 
     @NotNull

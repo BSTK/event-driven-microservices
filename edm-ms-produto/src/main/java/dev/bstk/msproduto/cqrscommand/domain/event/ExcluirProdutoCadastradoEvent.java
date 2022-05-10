@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.cqrscommand.event;
+package dev.bstk.msproduto.cqrscommand.domain.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

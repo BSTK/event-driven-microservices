@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.cqrsquery.queries;
+package dev.bstk.msproduto.cqrsquery.domain.queries;
 
 import lombok.Builder;
 import lombok.Data;

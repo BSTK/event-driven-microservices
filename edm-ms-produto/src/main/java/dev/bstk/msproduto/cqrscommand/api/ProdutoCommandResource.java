@@ -1,8 +1,8 @@
 package dev.bstk.msproduto.cqrscommand.api;
 
-import dev.bstk.msproduto.cqrscommand.command.AtualizarDadosProdutoCommand;
-import dev.bstk.msproduto.cqrscommand.command.CadastrarNovoProdutoCommand;
-import dev.bstk.msproduto.cqrscommand.command.ExcluirProdutoCadastradoCommand;
+import dev.bstk.msproduto.cqrscommand.domain.command.AtualizarDadosProdutoCommand;
+import dev.bstk.msproduto.cqrscommand.domain.command.CadastrarNovoProdutoCommand;
+import dev.bstk.msproduto.cqrscommand.domain.command.ExcluirProdutoCadastradoCommand;
 import dev.bstk.msproduto.cqrscommand.api.request.AtualizarDadosProdutoRequest;
 import dev.bstk.msproduto.cqrscommand.api.request.CadastrarNovoProdutoRequest;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.cqrscommand.command;
+package dev.bstk.msproduto.cqrscommand.domain.command;
 
 import lombok.Builder;
 import lombok.Data;

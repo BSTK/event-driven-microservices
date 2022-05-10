@@ -1,4 +1,4 @@
-package dev.bstk.msproduto.cqrscommand.data;
+package dev.bstk.msproduto.data;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

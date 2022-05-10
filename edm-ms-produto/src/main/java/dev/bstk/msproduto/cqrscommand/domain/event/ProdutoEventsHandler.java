@@ -1,7 +1,7 @@
-package dev.bstk.msproduto.cqrscommand.event;
+package dev.bstk.msproduto.cqrscommand.domain.event;
 
-import dev.bstk.msproduto.cqrscommand.data.Produto;
-import dev.bstk.msproduto.cqrscommand.data.ProdutoRepository;
+import dev.bstk.msproduto.data.Produto;
+import dev.bstk.msproduto.data.ProdutoRepository;
 import dev.bstk.msproduto.util.Mapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,11 +1,11 @@
-package dev.bstk.msproduto.cqrsquery.projection;
+package dev.bstk.msproduto.cqrsquery.domain.projection;
 
-import dev.bstk.msproduto.cqrscommand.data.Produto;
-import dev.bstk.msproduto.cqrscommand.data.ProdutoRepository;
+import dev.bstk.msproduto.data.Produto;
+import dev.bstk.msproduto.data.ProdutoRepository;
 import dev.bstk.msproduto.cqrsquery.api.response.ProdutoResponse;
-import dev.bstk.msproduto.cqrsquery.queries.ProdutosPorQuantidadeQuery;
-import dev.bstk.msproduto.cqrsquery.queries.ProdutosPorValorQuery;
-import dev.bstk.msproduto.cqrsquery.queries.ProdutosQuery;
+import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorQuantidadeQuery;
+import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorValorQuery;
+import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosQuery;
 import dev.bstk.msproduto.util.CollectionHelper;
 import dev.bstk.msproduto.util.Mapper;
 import lombok.AllArgsConstructor;
