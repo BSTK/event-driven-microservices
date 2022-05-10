@@ -35,7 +35,7 @@ public class ProdutoProjection {
             throw new IllegalArgumentException("Query não pode ser nula!");
         }
 
-        final List<Produto> produtos = repository.produtosPorValor(query.getDe(), query.getAte());
+        final List<Produto> produtos = repository.produtosValorDeAte(query.getDe(), query.getAte());
 
         return CollectionHelper.isEmpty(produtos)
             ? Collections.emptyList()
@@ -48,7 +48,7 @@ public class ProdutoProjection {
             throw new IllegalArgumentException("Query não pode ser nula!");
         }
 
-        final List<Produto> produtos = repository.produtosPorQuantidade(query.getDe(), query.getAte());
+        final List<Produto> produtos = repository.produtosQuantidadeDeAte(query.getDe(), query.getAte());
 
         return CollectionHelper.isEmpty(produtos)
             ? Collections.emptyList()

@@ -37,8 +37,10 @@ public class ProdutoQueryResource {
     }
 
     @GetMapping("/valor")
-    public ResponseEntity<List<ProdutoResponse>> produtosPorValor(@RequestParam("de") final BigDecimal valorDe,
-                                                                  @RequestParam("ate") final BigDecimal valorAte) {
+    public ResponseEntity<List<ProdutoResponse>> produtosPorValor(
+        @RequestParam(value = "de", required = false) final BigDecimal valorDe,
+        @RequestParam(value = "ate", required = false) final BigDecimal valorAte) {
+
         final List<ProdutoResponse> produtosResponse = queryGateway
             .query(
                 ProdutosPorValorQuery
@@ -53,8 +55,10 @@ public class ProdutoQueryResource {
     }
 
     @GetMapping("/quantidade")
-    public ResponseEntity<List<ProdutoResponse>> produtosPorQuantidade(@RequestParam("de") final Integer quantidadeDe,
-                                                                       @RequestParam("ate") final Integer quantidadeAte) {
+    public ResponseEntity<List<ProdutoResponse>> produtosPorQuantidade(
+        @RequestParam(value = "de", required = false) final Integer quantidadeDe,
+        @RequestParam(value = "ate", required = false) final Integer quantidadeAte) {
+
         final List<ProdutoResponse> produtosResponse = queryGateway
             .query(
                 ProdutosPorQuantidadeQuery
