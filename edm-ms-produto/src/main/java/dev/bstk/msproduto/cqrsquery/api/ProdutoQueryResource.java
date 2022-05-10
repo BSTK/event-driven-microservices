@@ -4,7 +4,9 @@ import dev.bstk.msproduto.cqrsquery.api.response.ProdutoResponse;
 import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorQuantidadeQuery;
 import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorValorQuery;
 import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosQuery;
+import dev.bstk.msproduto.data.Produto;
 import dev.bstk.msproduto.util.CollectionHelper;
+import dev.bstk.msproduto.util.Mapper;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -27,13 +29,13 @@ public class ProdutoQueryResource {
 
     @GetMapping
     public ResponseEntity<List<ProdutoResponse>> produtos() {
-        final List<ProdutoResponse> produtosResponse = queryGateway
+        final List<Produto> produtos = queryGateway
             .query(
                 ProdutosQuery.builder().build(),
-                ResponseTypes.multipleInstancesOf(ProdutoResponse.class))
+                ResponseTypes.multipleInstancesOf(Produto.class))
             .join();
 
-        return response(produtosResponse);
+        return response(produtos);
     }
 
     @GetMapping("/valor")
@@ -41,17 +43,17 @@ public class ProdutoQueryResource {
         @RequestParam(value = "de", required = false) final BigDecimal valorDe,
         @RequestParam(value = "ate", required = false) final BigDecimal valorAte) {
 
-        final List<ProdutoResponse> produtosResponse = queryGateway
+        final List<Produto> produtos = queryGateway
             .query(
                 ProdutosPorValorQuery
                     .builder()
                     .de(valorDe)
                     .ate(valorAte)
                     .build(),
-                ResponseTypes.multipleInstancesOf(ProdutoResponse.class))
+                ResponseTypes.multipleInstancesOf(Produto.class))
             .join();
 
-        return response(produtosResponse);
+        return response(produtos);
     }
 
     @GetMapping("/quantidade")
@@ -59,22 +61,26 @@ public class ProdutoQueryResource {
         @RequestParam(value = "de", required = false) final Integer quantidadeDe,
         @RequestParam(value = "ate", required = false) final Integer quantidadeAte) {
 
-        final List<ProdutoResponse> produtosResponse = queryGateway
+        final List<Produto> produtos = queryGateway
             .query(
                 ProdutosPorQuantidadeQuery
                     .builder()
                     .de(quantidadeDe)
                     .ate(quantidadeAte)
                     .build(),
-                ResponseTypes.multipleInstancesOf(ProdutoResponse.class))
+                ResponseTypes.multipleInstancesOf(Produto.class))
             .join();
 
-        return response(produtosResponse);
+        return response(produtos);
     }
 
-    private ResponseEntity<List<ProdutoResponse>> response(final List<ProdutoResponse> response) {
+    private ResponseEntity<List<ProdutoResponse>> response(final List<Produto> response) {
         return CollectionHelper.isEmpty(response)
-            ? ResponseEntity.noContent().build()
-            : ResponseEntity.ok().body(response);
+            ? ResponseEntity
+                .noContent()
+                .build()
+            : ResponseEntity
+                .ok()
+                .body(Mapper.list(response, ProdutoResponse.class));
     }
 }

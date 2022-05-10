@@ -2,7 +2,6 @@ package dev.bstk.msproduto.data;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
@@ -26,30 +25,33 @@ public class ProdutoRepositoryQueryImpl implements ProdutoRepositoryQuery {
 
     @Override
     public List<Produto> produtosValorDeAte(final BigDecimal de, final BigDecimal ate) {
-        return executaQuery(VALOR, de, ate).getResultList();
+        return executaQuery(VALOR, de, ate);
     }
 
     @Override
     public List<Produto> produtosQuantidadeDeAte(final Integer de, final Integer ate) {
-        return executaQuery(QUANTIDADE, de, ate).getResultList();
+        return executaQuery(QUANTIDADE, de, ate);
     }
 
-    private TypedQuery<Produto> executaQuery(final String coluna, final Object de, final Object ate) {
+    private List<Produto> executaQuery(final String coluna, final Object de, final Object ate) {
         if (Objects.isNull(de)) {
             return manager
                 .createQuery(String.format(QUERY_DE, coluna), Produto.class)
-                .setParameter(CAMPO_ATE, ate);
+                .setParameter(CAMPO_ATE, ate)
+                .getResultList();
         }
 
         if (Objects.isNull(ate)) {
             return manager
                 .createQuery(String.format(QUERY_ATE, coluna), Produto.class)
-                .setParameter(CAMPO_DE, de);
+                .setParameter(CAMPO_DE, de)
+                .getResultList();
         }
 
         return manager
             .createQuery(String.format(QUERY_DE_ATE, coluna), Produto.class)
             .setParameter(CAMPO_DE, de)
-            .setParameter(CAMPO_ATE, ate);
+            .setParameter(CAMPO_ATE, ate)
+            .getResultList();
     }
 }

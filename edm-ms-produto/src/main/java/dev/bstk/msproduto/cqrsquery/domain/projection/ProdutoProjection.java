@@ -1,18 +1,14 @@
 package dev.bstk.msproduto.cqrsquery.domain.projection;
 
-import dev.bstk.msproduto.data.Produto;
-import dev.bstk.msproduto.data.ProdutoRepository;
-import dev.bstk.msproduto.cqrsquery.api.response.ProdutoResponse;
 import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorQuantidadeQuery;
 import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosPorValorQuery;
 import dev.bstk.msproduto.cqrsquery.domain.queries.ProdutosQuery;
-import dev.bstk.msproduto.util.CollectionHelper;
-import dev.bstk.msproduto.util.Mapper;
+import dev.bstk.msproduto.data.Produto;
+import dev.bstk.msproduto.data.ProdutoRepository;
 import lombok.AllArgsConstructor;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,34 +20,25 @@ public class ProdutoProjection {
 
 
     @QueryHandler
-    public List<ProdutoResponse> handler(final ProdutosQuery query) {
-        final List<Produto> produtos = repository.findAll();
-        return Mapper.list(produtos, ProdutoResponse.class);
+    public List<Produto> handler(final ProdutosQuery query) {
+        return repository.findAll();
     }
 
     @QueryHandler
-    public List<ProdutoResponse> handler(final ProdutosPorValorQuery query) {
-        if (Objects.isNull(query)) {
-            throw new IllegalArgumentException("Query não pode ser nula!");
-        }
-
-        final List<Produto> produtos = repository.produtosValorDeAte(query.getDe(), query.getAte());
-
-        return CollectionHelper.isEmpty(produtos)
-            ? Collections.emptyList()
-            : Mapper.list(produtos, ProdutoResponse.class);
+    public List<Produto> handler(final ProdutosPorValorQuery query) {
+        validarQuery(query);
+        return repository.produtosValorDeAte(query.getDe(), query.getAte());
     }
 
     @QueryHandler
-    public List<ProdutoResponse> handler(final ProdutosPorQuantidadeQuery query) {
+    public List<Produto> handler(final ProdutosPorQuantidadeQuery query) {
+        validarQuery(query);
+        return repository.produtosQuantidadeDeAte(query.getDe(), query.getAte());
+    }
+
+    private void validarQuery(final Object query) {
         if (Objects.isNull(query)) {
             throw new IllegalArgumentException("Query não pode ser nula!");
         }
-
-        final List<Produto> produtos = repository.produtosQuantidadeDeAte(query.getDe(), query.getAte());
-
-        return CollectionHelper.isEmpty(produtos)
-            ? Collections.emptyList()
-            : Mapper.list(produtos, ProdutoResponse.class);
     }
 }
